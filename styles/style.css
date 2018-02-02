@@ -24,6 +24,13 @@ header p {
   text-align: right;
   margin-right: 2%;
 }
+header #logo {
+   position: absolute;
+   display: block;
+   width: 70px;
+   float: left;
+   margin: -140px 0px 0px 30px;
+}
 article aside footer {
   display: block;
 }
@@ -53,9 +60,10 @@ aside li {
 
 .sub {
    padding-left: 3em;
+   font-size: 0.9em;
 }
 .sub::before {
-  content: &#10084;
+  content: &reg;
 }
 
 article {
@@ -67,6 +75,18 @@ article {
   margin-bottom: 20px;
 }
 
+/* Картинки*/
+.page1picr {
+  width: 200px;
+  float: right;
+}
+
+.page1picl {
+  width: 200px;
+  float: left;
+}
+
+/* Текст расположенный в главном разделе*/
 article p {
   text-indent: 2em;
 }
