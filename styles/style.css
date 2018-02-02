@@ -51,6 +51,13 @@ aside li {
   background-color: lightpink;
 }
 
+.sub {
+   padding-left: 3em;
+}
+.sub::before {
+  content: &#10084;
+}
+
 article {
   width: 75%;
   float: right;
