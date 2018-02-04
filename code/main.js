@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//                                   pattern.js
-//   шаблон программы
+//                                   main.js
+//   Основная программа сайта hmdoll.ru
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function main() {
    // главная функция, которая всё и делает...
@@ -10,7 +10,7 @@ function main() {
   var $menuItems = $("#menu li"); 
   // адреса страниц, составляющих сайт (наполнение article)
   urlMain = "docs/main.html";
-  urlGall = "docs/gallery.html";
+  urlGall = "";                   // Определяется контекстом
   urlProc = "docs/process.html";
   urlPatt = "docs/pattern.html";
   urlCont = "docs/contacts.html"; 
@@ -97,6 +97,7 @@ function main() {
      $nt.text(menuItem);
      if ("МальчикиДевочкиЗверушки".indexOf(menuItem) != -1 ) {
          // Сразу к галерее, минуя перетурбации с меню
+        $nt.text("Фотогалерея");
         setGallery(menuItem);
         return;
      }     
@@ -153,8 +154,11 @@ function main() {
 //--------------------------------------------------------------------------------------
 
   function setGallery(galType) {
-
-     fillArticle(urlGall);   
+     if (galType.indexOf("Фото") !=-1) {
+        galType = "Девочки";  // по умолчанию
+     } // if
+     urlGall = "docs/"+galType+".html";
+     loadGallery(urlGall);   
   } // setGallery
 
 //--------------------------------------------------------------------------------------
