@@ -23,10 +23,9 @@ function main() {
   // Запоминаем пункты меню в переменных
   $mn = $("#menu li:contains('Главная')");       //main
   $pg = $("#menu li:contains('Фотогалерея')");   //photo gallery
-  $gl = $("#menu li:contains('Девочки')");       // girls
-  $by = $("#menu li:contains('Мальчики')");      // boys
+  $dl = $("#menu li:contains('Куклы')");         // dolls
   $an = $("#menu li:contains('Зверушки')");      // animals
-  $pr = $("#menu li:contains('Процесс')");       // process
+  $pr = $("#menu li:contains('Мастер-класс')");  // process
   $pt = $("#menu li:contains('Выкройки')");      // patterns
   $ct = $("#menu li:contains('Контакты')");      // contacts
   // к переменным добавляем слушателей
@@ -40,11 +39,7 @@ function main() {
      var menuItem = $(this).text();
      manageMenu(menuItem);
   });  //
-  $gl.click(function () {
-     var menuItem = $(this).text();
-     manageMenu(menuItem);
-  });  //
-  $by.click(function () {
+  $dl.click(function () {
      var menuItem = $(this).text();
      manageMenu(menuItem);
   });  //
@@ -95,7 +90,7 @@ function main() {
       // разруливаем главное меню взависимости от menuItem 
      var $nt = $("#mmheader");
      $nt.text(menuItem);
-     if ("МальчикиДевочкиЗверушки".indexOf(menuItem) != -1 ) {
+     if ("КуклыЗверушки".indexOf(menuItem) != -1 ) {
          // Сразу к галерее, минуя перетурбации с меню
         $nt.text("Фотогалерея");
         setGallery(menuItem);
@@ -109,15 +104,14 @@ function main() {
            break;
         case "Фотогалерея":
            $menu.append($mn);
-           $menu.append($gl);
-           $menu.append($by);
+           $menu.append($dl);
            $menu.append($an);
            $menu.append($pr);
            $menu.append($pt);
            $menu.append($ct);
-           setGallery("Девочки");
+           setGallery("Куклы");
            break;
-        case "Процесс":
+        case "Мастер-класс":
            setProcess();
            break;
         case "Выкройки":
@@ -134,8 +128,7 @@ function main() {
   function detachAll() {
      $mn.detach();
      $pg.detach();
-     $gl.detach();
-     $by.detach();
+     $dl.detach();
      $an.detach();
      $pr.detach();
      $pt.detach();
@@ -155,7 +148,7 @@ function main() {
 
   function setGallery(galType) {
      if (galType.indexOf("Фото") !=-1) {
-        galType = "Девочки";  // по умолчанию
+        galType = "Куклы";  // по умолчанию
      } // if
      urlGall = "docs/"+galType+".html";
      loadGallery(urlGall);   
