@@ -27,7 +27,7 @@ class MainController extends AppController {
             App::$app->cache->set('posts', $posts);
         }
         
-        $menu  = \R::findAll('category');
+        $menu  = \R::findAll('mmenu');
         //
         $title = 'PAGE TITLE';
         //$this->setMeta('Главная страница', 'Описане страницы', 'Ключевые слова');
