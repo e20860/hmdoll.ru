@@ -1,5 +1,9 @@
 # Игнорируем временные файлы с тильдой
 *~
 temp/
+tmp/
 old/
+.gitignore
+.htaccess
+
 
