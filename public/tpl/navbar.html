@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Интернет-магазин продажа кукол ручной работы">
+    <meta name="author" content="Е. Славко">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Магазин HMDoll</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/navbar-top.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="#">HMDoll</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Главная<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Приобретение и доставка</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">О нас...</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+			<label for="inputLanguage" class=" text-light">Язык/Language:<span>&nbsp &nbsp;&nbsp;</span> </label>
+			<select class="custom-select mr-sm-2" id="inputLanguage">
+				<option value="1" selected >Русский</option>
+				<option value="2">English</option>
+			</select>		 
+        </form>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+
+      <div class="jumbotron">
+			<div class="row">
+				<div class="col-sm-2">
+				   <img src="../img/hmd.gif" class="img-fluid" id="gal"  alt="logotype"> 
+				</div>
+				<div class="col-sm-10">
+					<p class="h1 text-center">Куклы ручной работы</p>
+					&nbsp;&nbsp;&nbsp;&nbsp;Здесь Вы можете найти замечательную куклу изготовленную для Вас. Все куклы производятся по оригинальным лекалам вручную. Мы вкладываем в каждую частичку своей души. Может какая-нибудь согреет Вас?
+				</div>
+			</div>
+		
+      </div>
+
+	  <div class="container">
+
+
+	  </div>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery_3_2_1.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+	<script>
+	   setInterval(changePicture,5000);
+	   function changePicture() {
+	       var pictures = [
+			   "DSC08358.JPG",
+			   "DSC08366.JPG",
+			   "DSC08390.JPG",
+			   "DSC08421.JPG",
+			   "DSC08487.JPG",
+			   "IMG-20180407-WA0002.jpg",
+			   "IMG-20180415-WA0006.jpg",
+			   "IMG_20180417_131423к.jpg",
+			   "IMG_20181018_131640.jpg",
+			   "IMG_20181018_133012.jpg",
+		   ], index, curPic, objPic;
+		   index = Math.round(Math.random()*9);
+		   curPic = "../img/" + pictures[index];
+		   objPic = document.getElementById("gal");
+		   objPic.setAttribute('src', curPic);
+	   }
+	</script>
+  </body>
+</html>
