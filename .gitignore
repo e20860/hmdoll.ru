@@ -5,6 +5,4 @@ tmp/
 old/
 .gitignore
 .htaccess
-
-
-/nbproject/private/
+nbproject/

@@ -17,31 +17,31 @@ use vendor\core\App;
  * @author eugenie
  */
 class MainController extends AppController {
-    //Можно добавить шаблони вид для контроллера
+    //Можно добавить шаблон и вид для контроллера
     public function indexAction() {
         
         $model = new Main;
-        $posts = App::$app->cache->get('posts');
-        if (!$posts) {
-            $posts = \R::findAll('articles');
-            App::$app->cache->set('posts', $posts);
+        /*
+        $items = App::$app->cache->get('items');
+        if (!$items) {
+            $items = \R::findAll('items');
+            App::$app->cache->set('items', $items);
         }
-        
-        $menu  = \R::findAll('mmenu');
+        */
+        //$items = \R::findAll('items');
+        $items = $model->getAllDolls();
+        //$menu  = \R::findAll('mmenu');
+        $menu = $model->getMainMenu();
         //
-        $title = 'PAGE TITLE';
-        //$this->setMeta('Главная страница', 'Описане страницы', 'Ключевые слова');
-        //$meta = $this->meta;
+        $title = 'Главная';
         \vendor\core\base\View::setMeta('Главная страница', 'Описане страницы', 'Ключевые слова');
-        $this->set(compact('title','posts','menu', 'meta'));
-        //$this->layout = 'main';
-        //$this->view ='test';
+        $this->set(compact('title','items','menu'));
     } 
     public function testAction() {
         if ($this->isAjax()) {
            $model = new Main();
            $post = \R::findOne('articles', "id = {$_POST['id']}");
-           debug($post);
+           //debug($post);
            $this->loadView('ajax', compact('post'));
            exit();
         }

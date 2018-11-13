@@ -1,13 +1,13 @@
 <?php
 
 /* 
- * Лицензионный заголовок.
- * Авторские права на этот проект не распространяются
- * Открытый фреймворк.
+ * Кукольный магазинчик HMDoll
+ * Авторские права  У.Славко
+ * + Открытый фреймворк.
  */
 
 return [
-    'dsn' => 'mysql:host=localhost;dbname=minicms;charset=utf8',
+    'dsn' => 'mysql:host=localhost;dbname=hmdoll;charset=utf8',
     'user' => 'root',
     'pass' => 'de026233'
     
