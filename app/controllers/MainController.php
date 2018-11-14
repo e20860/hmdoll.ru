@@ -50,4 +50,23 @@ class MainController extends AppController {
         $this->view = 'test';
 
     }
+    
+    /**
+     * Показывает одну куклу
+     */
+    
+    public function itemAction()
+    {
+        $model = new Main;
+        $this->layout = 'showitem';
+        $this->view = 'item';
+        $item_id = $_GET['id'];
+        $title = 'Одна кукла';
+        $one_item = $model->getOneDoll($item_id);
+        $pics = $model->getPictures($item_id);
+        $menu = $model->getMainMenu();
+        \vendor\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
+        $this->set(compact('title', 'one_item','menu', 'pics'));
+   
+    }
 }

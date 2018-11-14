@@ -60,7 +60,10 @@ class View {
     }
     public function render($vars) {
         // Массив переменных превращаем в отдельные переменные
-        if(is_array($vars)) extract($vars);
+        if(is_array($vars)) {
+            extract($vars);
+            //debug($vars);
+        }
         // Определяем вид
         $file_view   = APP . "/views/{$this->route['controller']}/{$this->view}.php";
         ob_start();

@@ -14,6 +14,7 @@ define('ROOT', dirname(__DIR__));
 define('LIBS', dirname(__DIR__) .'/vendor/libs');
 define('APP', dirname(__DIR__) . '/app');
 define('CACHE', dirname(__DIR__) . '/tmp/cache');
+define('IMAGES', '/public/img');
 define('LAYOUT','default');
 
 $query = rtrim($_SERVER['QUERY_STRING'],'/');

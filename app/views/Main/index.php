@@ -2,7 +2,7 @@
         <div class="jumbotron">
             <div class="row">
                     <div class="col-sm-2">
-                       <img src="img/hmd.gif" class="img-fluid" id="gal"  alt="logotype"> 
+                       <img src="/public/img/hmd.gif" class="img-fluid" id="gal"  alt="logotype"> 
                     </div>
                     <div class="col-sm-10">
                             <p class="h1 text-center">Куклы ручной работы</p>
@@ -20,12 +20,12 @@
                                 <div class="col-md-4">
                                     <div class="card mb-4 shadow-sm img-thumbnail max-width: 100px">
                                         <div class="card-header text-center"><p class="h5"><?php echo $item['name'] ?></p></div>
-                                        <img class="card-img-top" src="<?php echo 'img/' . $item['picture'];  ?>" alt="Sheep">
+                                        <img class="card-img-top" src="<?php echo '/public/img/' . $item['picture'];  ?>" alt="Sheep">
                                         <div class="card-body">
                                             <p class="card-text"><?php echo $item['description']; ?></p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
+                                                        <a class="btn btn-sm btn-outline-secondary" href="main/item?id=<?php echo $item['id']; ?>" role="button">Посмотреть</a>
                                                         <button type="button" class="btn btn-sm btn-outline-secondary">Заказать</button>
                                                     </div>
                                                     <small class="text-muted"><?php echo $item['price'] .' руб.'; ?></small>

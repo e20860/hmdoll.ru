@@ -13,8 +13,39 @@
 
     <!-- Custom styles for this template -->
     <link href="/public/css/navbar-top.css" rel="stylesheet">
+    <style>
+       .btn-pic:hover {
+           cursor: pointer;
+       }
+       .btn-video:hover {
+           cursor: pointer;
+       }
+    </style>
+    
   </head>
   <body>
+       <!--        модальное окно -->
+	<div class="modal" id="videoModal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Видео куклы</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body text-center">
+			<video width="400" height="300" autoplay="autoplay" loop="loop" controls="controls" >
+				<source src="../video/video1.mp4" type="video/mp4" />
+			</video>
+		  </div>
+		  <div class="modal-footer">
+		  </div>
+		</div>
+	  </div>
+	</div>	
+        <!-- конец модального окна -->
+      
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <a class="navbar-brand" href="#">HMDoll</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
