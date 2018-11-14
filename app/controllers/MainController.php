@@ -6,13 +6,13 @@ use app\models\Main;
 use vendor\core\App;
 
 /*
- * Лицензионный заголовок.
- * Авторские права на этот проект не распространяются
+ * Интернет - магазин HMDoll
+ * Авторские права HMDoll E/Slavko
  * Открытый фреймворк.
  */
 
 /**
- * Description of Main
+ * Главный контроллер
  *
  * @author eugenie
  */
@@ -68,5 +68,20 @@ class MainController extends AppController {
         \vendor\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
         $this->set(compact('title', 'one_item','menu', 'pics'));
    
+    }
+    
+    public function orderAction() 
+    {
+        $model = new Main;
+        //$this->layout = 'default';
+        $this->view = 'order';
+        $item_id = $_GET['id'];
+        $title = 'Заказ';
+        $one_item = $model->getOneDoll($item_id);
+        $pics = $model->getPictures($item_id);
+        $menu = $model->getMainMenu();
+        \vendor\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
+        $this->set(compact('title', 'one_item','menu', 'pics'));
+        
     }
 }

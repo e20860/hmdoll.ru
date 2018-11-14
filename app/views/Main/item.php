@@ -9,7 +9,7 @@
 			  <div class="card-body">
 				<h5 class="card-title"><?php echo $one_item['name'] ?></h5>
 				<p class="card-text"><?php echo $one_item['description'] ?></p>
-				<a href="#" class="btn btn-primary">Заказать</a>
+				<a href="order?id=<?php echo $one_item['id']?>" class="btn btn-primary">Заказать</a>
 			  </div>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 			</ul>
                         <p class="h4 text-left"><b>&nbsp;&nbsp;&nbsp;&nbsp;Цена: <?php echo $one_item['price'] ?> руб</b></p>
 			<div class="text-right">
-			<a href="#" class="btn btn-primary">Немедленно заказать</a>
+			<a href="order?id=<?php echo $one_item['id']?>" class="btn btn-primary">Заказать</a>
 			</div>
 			<hr>
 			<p class="h4 text-center">Задать вопрос</p>

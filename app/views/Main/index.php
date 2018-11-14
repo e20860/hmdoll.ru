@@ -26,7 +26,7 @@
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
                                                         <a class="btn btn-sm btn-outline-secondary" href="main/item?id=<?php echo $item['id']; ?>" role="button">Посмотреть</a>
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Заказать</button>
+                                                        <a class="btn btn-sm btn-outline-secondary" href="main/order?id=<?php echo $item['id']; ?>" role="button">Заказать</a>
                                                     </div>
                                                     <small class="text-muted"><?php echo $item['price'] .' руб.'; ?></small>
                                                 </div>
