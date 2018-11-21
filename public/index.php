@@ -44,9 +44,4 @@ Router::add('^$',['controller' => 'Main', 'action' => 'index']);
 // Во всех остальных случаях - первый параметр - controller
 // второй - action, дальше - параметры самого action
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
-
-//debug(Router::getroutes());
-
-Router::dispatch($query);
-
-    
+Router::dispatch($query); 
