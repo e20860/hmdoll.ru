@@ -38,7 +38,7 @@
 	</div>	
         <!-- конец модального окна -->
       
-        <?php include_once ( WWW . '\include\mainmenu.inc' );?>
+        <?php include_once ( WWW . '/include/mainmenu.inc' );?>
              <?=$content?>
       
       <script src="/public/js/jquery_3_2_1.js"></script>

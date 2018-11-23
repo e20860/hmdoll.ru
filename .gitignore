@@ -8,4 +8,5 @@ old/
 nbproject/
 /vendor/composer/
 /vendor/monolog/
+/vendor/psr
 logs/

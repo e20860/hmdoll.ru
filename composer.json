@@ -9,6 +9,13 @@
         }
     ],
     "require": {
-		"monolog/monolog": "1.0.*"
-	}
+		"monolog/monolog": "^1.24"
+	},
+    "autoload": {
+        "psr-4": {
+            "hmd\\": "vendor/hmd",
+            "app\\":"app"
+        }
+    }
 }
+
