@@ -4,14 +4,14 @@
  * 
  * 
  */
-use vendor\core\Router;
+use vendor\hmd\core\Router;
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 define('WWW', __DIR__);
-define('CORE', dirname(__DIR__) . '/vendor/core');
+define('CORE', dirname(__DIR__) . '/vendor/hmd/core');
 define('ROOT', dirname(__DIR__));
-define('LIBS', dirname(__DIR__) .'/vendor/libs');
+define('LIBS', dirname(__DIR__) .'/vendor/hmd/libs');
 define('APP', dirname(__DIR__) . '/app');
 define('CACHE', dirname(__DIR__) . '/tmp/cache');
 define('IMAGES', '/public/img');
@@ -20,7 +20,7 @@ define('LAYOUT','default');
 $query = rtrim($_SERVER['QUERY_STRING'],'/');
 
 //require '../vendor/core/Router.php';
-require '../vendor/libs/functions.php';
+require '../vendor/hmd/libs/functions.php';
 
 // Классы грузятся и регистрируются автоматом
 spl_autoload_register(function($class){
@@ -30,7 +30,7 @@ spl_autoload_register(function($class){
     }
 });
 
-new vendor\core\App;
+new vendor\hmd\core\App;
 
 // Пользовательские маршруты (если надо что-то сделать нестандартно)
 // например, перенаправить pages на Posts
@@ -44,8 +44,6 @@ Router::add('^$',['controller' => 'Main', 'action' => 'index']);
 // Во всех остальных случаях - первый параметр - controller
 // второй - action, дальше - параметры самого action
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
-
-//debug(Router::getroutes());
 
 Router::dispatch($query);
 

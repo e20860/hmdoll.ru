@@ -2,7 +2,7 @@
         <div class="jumbotron">
             <div class="row">
                     <div class="col-sm-2">
-                       <img src="/public/img/hmd.gif" class="img-fluid" id="gal"  alt="logotype"> 
+                        <img src="/public/img/hmd_logo.gif" class="img-fluid" id="gal"  alt="logotype"> 
                     </div>
                     <div class="col-sm-10">
                             <p class="h1 text-center">Куклы ручной работы</p>

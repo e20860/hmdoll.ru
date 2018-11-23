@@ -1,0 +1,14 @@
+{
+    "name": "slavko/hmdoll.ru",
+    "description": "hmdoll.ru - little doll shop",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Eugenie Slavko",
+            "email": "slavko.evg@gmail.com"
+        }
+    ],
+    "require": {
+		"monolog/monolog": "1.0.*"
+	}
+}
