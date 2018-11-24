@@ -3,9 +3,8 @@
 temp/
 tmp/
 old/
-.gitignore
 .htaccess
 nbproject/
-/vendor/composer/
-/vendor/monolog/
+#vendor/composer/
+#vendor/monolog/
 logs/

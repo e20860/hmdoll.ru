@@ -20,7 +20,7 @@ class MainController extends AppController {
     //Можно добавить шаблон и вид для контроллера
     public function indexAction() {
         
-        $model = new Main;
+        $model = new Main();
         /*
         $items = App::$app->cache->get('items');
         if (!$items) {
@@ -31,7 +31,7 @@ class MainController extends AppController {
         //$items = \R::findAll('items');
         $items = $model->getAllDolls();
         //$menu  = \R::findAll('mmenu');
-        $menu = $model->getMainMenu();
+        //$menu = $model->getMainMenu();
         //
         $title = 'Главная';
         \vendor\hmd\core\base\View::setMeta('Главная страница', 'Описане страницы', 'Ключевые слова');
@@ -66,14 +66,13 @@ class MainController extends AppController {
     
     public function itemAction()
     {
-        $model = new Main;
+        $model = new Main();
         $this->layout = 'showitem';
         $this->view = 'item';
         $item_id = $_GET['id'];
         $title = 'Одна кукла';
         $one_item = $model->getOneDoll($item_id);
         $pics = $model->getPictures($item_id);
-        $menu = $model->getMainMenu();
         \vendor\hmd\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
         $this->set(compact('title', 'one_item','menu', 'pics'));
    
@@ -81,16 +80,28 @@ class MainController extends AppController {
     
     public function orderAction() 
     {
-        $model = new Main;
+        $model = new Main();
         $this->layout = 'default';
         $this->view = 'order';
         $item_id = $_GET['id'];
         $title = 'Заказ';
         $one_item = $model->getOneDoll($item_id);
         $pics = $model->getPictures($item_id);
-        $menu = $model->getMainMenu();
         \vendor\hmd\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
         $this->set(compact('title', 'one_item','menu', 'pics'));
         
     }
+    
+    public function aboutAction()
+    {
+        $model = new Main();
+        
+    }
+    
+    public function howtopayAction()
+    {
+        $model = new Main();
+        
+    }
+    
 }
