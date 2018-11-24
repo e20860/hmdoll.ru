@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-		"monolog/monolog": "1.0.*"
+		"monolog/monolog": "^1.2.4*"
 	},
     "autoload": {
         "psr-4": {
@@ -18,3 +18,4 @@
         }
     }
 }
+
