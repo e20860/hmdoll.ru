@@ -1,0 +1,187 @@
+ HTML5 Drag and Drop загрузка файлов
+
+Благодаря нововведениям HTML5 создавать Drag and Drop интерфейсы стало гораздо проще. К сожалению, эти нововведения еще не обладают обширной поддержкой браузеров, но надеюсь в скором времени это изменится (на данный момент работает в Firefox 4+, Chrome и Opera 11.10).
+
+
+Разметка
+
+Сразу говорю, статья написана больше для новичков, чем для профессионалов. Поэтому некоторые моменты будут описываться очень подробно.
+
+Для начала, нам необходимо создать HTML файл с таким содержанием:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    
+  <title>HTML5 Drag and Drop загрузка файлов</title>  
+  <link rel="stylesheet" href="/style.css">
+    
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="/script.js"></script>
+</head>
+<body>    
+    <form action="/upload.php">
+      <div id="dropZone">
+        Для загрузки, перетащите файл сюда.
+      </div>
+    </form>  
+</body>
+</html>
+
+
+
+Вся работа у нас будет происходить с контейнером dropZone. Теперь добавим стили для нашего документа (style.css):
+
+body {
+    font: 12px Arial, sans-serif;
+}
+
+#dropZone {    
+    color: #555;
+    font-size: 18px;
+    text-align: center;    
+    
+    width: 400px;
+    padding: 50px 0;
+    margin: 50px auto;
+    
+    background: #eee;
+    border: 1px solid #ccc;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#dropZone.hover {
+    background: #ddd;
+    border-color: #aaa;
+}
+
+#dropZone.error {
+    background: #faa;
+    border-color: #f00;
+}
+
+#dropZone.drop {
+    background: #afa;
+    border-color: #0f0;
+}
+
+
+
+В стилях Вы можете заметить три состояния у элемента dropZone: при наведении, если возникает какая-то ошибка и при успешном выполнении.
+
+Скрипт загрузки
+
+Теперь мы приступим к самому интересному — написанию JavaScript кода. Для начала, нам необходимо создать переменные, в одну из которых мы поместим нашу dropZone, а во второй укажем максимальный размер файла.
+
+$(document).ready(function() {
+    var dropZone = $('#dropZone'),
+        maxFileSize = 1000000; // максимальный размер файла - 1 мб.
+});
+
+
+
+Дальше мы должны проверить поддерживает ли браузер Drag and Drop, для этого мы будем использовать FileReader функцию. Если браузер не поддерживает Drag and Drop, то внутри элемента dropZone мы напишем «Не поддерживается браузером!» и добавим класс «error».
+
+if (typeof(window.FileReader) == 'undefined') {
+    dropZone.text('Не поддерживается браузером!');
+    dropZone.addClass('error');
+}
+
+
+
+Следующее что мы сделаем это будет анимация эффекта перетаскивания файла на dropZone. Отслеживать эти действия мы будет с помощью событий «ondragover» и «ondragleave». Но, так как эти события не могут быть отслежены у jQuery объекта, нам необходимо обращаться не просто к «dropZone», а к «dropZone[0]».
+
+dropZone[0].ondragover = function() {
+    dropZone.addClass('hover');
+    return false;
+};
+    
+dropZone[0].ondragleave = function() {
+    dropZone.removeClass('hover');
+    return false;
+};
+
+
+
+Теперь нам необходимо написать обработчик события «ondrop» — это событие когда перетянутый файл опустили. В некоторых браузерах при перетягивании файлов в окно браузера они автоматически открываются, что бы такого не произошло нам нужно отменить стандартное поведение браузера. Также нам необходимо убрать класс «hover», и добавить класс «drop».
+
+dropZone[0].ondrop = function(event) {
+    event.preventDefault();
+    dropZone.removeClass('hover');
+    dropZone.addClass('drop');
+};
+
+
+
+Дальше нам нужно добавить проверку на размер файла, для этого добавим в обработчик «ondrop» следующий строчки кода:
+
+var file = event.dataTransfer.files[0];
+        
+if (file.size > maxFileSize) {
+    dropZone.text('Файл слишком большой!');
+    dropZone.addClass('error');
+    return false;
+}
+
+
+
+Теперь нам необходимо написать AJAX запрос отсылающий наш файл в обработчик. Для создания AJAX запроса мы будем использовать объект XMLHttpRequest. Добавим для объекта XMLHttpRequest два обработчика событий: один будет показывать прогресс загрузки файла, а второй результат загрузки. В качестве обработчика укажем файл upload.php.
+
+var xhr = new XMLHttpRequest();
+xhr.upload.addEventListener('progress', uploadProgress, false);
+xhr.onreadystatechange = stateChange;
+xhr.open('POST', '/upload.php');
+xhr.setRequestHeader('X-FILE-NAME', file.name);
+xhr.send(file);
+
+
+
+Теперь займемся функциями прогресса загрузки и результата загрузки. В функции «uploadProgress» нет ничего сложного, лишь простейшая математика.
+
+function uploadProgress(event) {
+    var percent = parseInt(event.loaded / event.total * 100);
+    dropZone.text('Загрузка: ' + percent + '%');
+}
+
+
+
+В функции «stateChange» мы должны проверить завершен ли процесс загрузки, и если да, то необходимо проверить не возникла ли какая-либо ошибка. Код успешного запроса «200», если же код отличается от этого, то это означает, что произошла ошибка.
+
+function stateChange(event) {
+    if (event.target.readyState == 4) {
+        if (event.target.status == 200) {
+            dropZone.text('Загрузка успешно завершена!');
+        } else {
+            dropZone.text('Произошла ошибка!');
+            dropZone.addClass('error');
+        }
+    }
+}
+
+
+
+Написание JavaScript части завершено.
+
+Серверная часть
+
+Все что нам осталось, это написать простейший обработчик, который будет сохранять файл в нужном нам месте. В написании обработчика я не буду сильно углубляться, а лишь приведу небольшой пример на PHP.
+
+<?php
+
+$uploaddir = getcwd().DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR;
+$uploadfile = $uploaddir.basename($_FILES['file']['name']);
+
+move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
+
+?>
+
+
+
+На этом всё, надеюсь статья была полезной для Вас.
+
+Скачать исходные файлы вы можете здесь.
+Перевод и доработка статьи: HTML5 Native Drag And Drop File Upload
