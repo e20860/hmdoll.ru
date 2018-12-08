@@ -1,3 +1,5 @@
 <?php
 
-echo 'О НАС';
+echo 'О НАС' .'<br>';
+echo $_SERVER['HTTP_REFERER'];
+//redirect();

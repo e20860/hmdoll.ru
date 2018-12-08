@@ -17,5 +17,6 @@ class App {
     public function __construct() {
         self::$app = Registry::instance();
         new ErrorHandler();
+        session_start(['name' => 'PHPSESSID']);
     }
 }

@@ -93,14 +93,16 @@ class Router {
                     $cObj->$action();
                     $cObj->getView();
                 }else{
-                    echo "Метод <b>$controller::$action</b> не найден";
+                    $errstr = "Метод <b>$controller::$action</b> не найден";
+                    throw new \Exception($errstr,404);
                 }
             }else{
-                echo "Контроллер <b>$controller</b> не найден";
+                
+                $errstr = "Контроллер <b>$controller</b> не найден";
+                throw new \Exception($errstr,404);
             }
         } else {
-            http_response_code(404);
-            include '404.html';
+            throw new \Exception("Страница не найдена", 404);
         }
     }
     

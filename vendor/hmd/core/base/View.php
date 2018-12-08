@@ -37,11 +37,6 @@ class View {
      * @scripts array
      */
     public $scripts = [];
-    /**
-     * Хранилище стилей
-     * @styles array 
-     */
-    public $styles = [];
     
     /**
      * Хранилище метаданных
@@ -87,15 +82,10 @@ class View {
             $file_layout = APP . "/views/layouts/{$this->layout}.php";
             if(is_file($file_layout)){
                 $content = $this->cutScript($content);
-                $content = $this->cutStyle($content);
                 
                 $scripts = [];
                 if (!empty($this->scripts[0])) {
                     $scripts = $this->scripts[0];
-                }
-                $styles = [];
-                if (!empty($this->styles[0])) {
-                    $styles = $this->styles[0];
                 }
                 require $file_layout;
             } else {
@@ -111,20 +101,6 @@ class View {
     protected function cutScript($content) {
         $pattern =  "#\<script.*?\>.*?\<\/script\>#si";
         if (!empty(preg_match_all($pattern, $content, $this->scripts))) {
-            $content = preg_replace($pattern, '', $content);
-        }
-        return $content;
-    }
-    
-    /**
-     *  Вырезает ссылки на стили из контента для того, 
-     *  чтобы переместить их в шаблон (как скрипты)
-     *  @param string $content
-     */
-    protected function cutStyle($content)
-    {
-        $pattern = "#<link.+.css.*>#si";
-        if (!empty(preg_match_all($pattern, $content, $this->styles))) {
             $content = preg_replace($pattern, '', $content);
         }
         return $content;

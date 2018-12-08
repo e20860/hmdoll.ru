@@ -1,7 +1,7 @@
 <?php
 /* * 
  *  Главная точка входа в систему
- * 
+ *      Фронт-контроллер
  * 
  */
 use vendor\hmd\core\Router;
@@ -43,12 +43,15 @@ Router::add('^page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'v
 Router::add('^about$', ['controller'=> 'Main', 'action' => 'about']);
 Router::add('^howtopay$', ['controller'=> 'Main', 'action' => 'howtopay']);
 
+// Админка
+Router::add('^slavko$', ['controller'=> 'Slavko', 'action' => 'login']);
+
 //маршруты по умолчанию
 // Если пустой URL - перенаправляется на главную страницу
 Router::add('^$',['controller' => 'Main', 'action' => 'index']);
 
 // Во всех остальных случаях - первый параметр - controller
-// второй - action, дальше - параметры самого action
+// второй - action, дальше: GET-параметры самого action
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
 Router::dispatch($query);

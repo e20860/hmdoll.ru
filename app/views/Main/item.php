@@ -1,5 +1,5 @@
 <main role="main" class="container">
-    <p class="h1 text-center">Подробнее о кукле</p>
+    <p class="h1 text-center">Подробнее об изделии</p>
 	<hr>
         
 	<div class="row">
@@ -27,7 +27,7 @@
 			<p class="h3"> Основные характеристики</p>
 			<hr>
 			<ul>
-			  <li>Тип куклы: <?php echo $one_item['type'] ?></li>
+			  <li>Тип изделия: <?php echo $one_item['type'] ?></li>
 			  <li>Материал: <?php echo $one_item['material'] ?></li>
 			  <li>Статус: <?php echo $one_item['status'] ?></li>
 			  <li>Размеры: <?php echo $one_item['dimensions'] ?></li>

@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Main;
 use vendor\hmd\core\App;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /*
  * Интернет - магазин HMDoll
@@ -17,27 +19,64 @@ use vendor\hmd\core\App;
  * @author eugenie
  */
 class MainController extends AppController {
-    //Можно добавить шаблон и вид для контроллера
+    /**
+     *  Главная страница сайта
+     */
     public function indexAction() {
         
         $model = new Main();
-        /*
-        $items = App::$app->cache->get('items');
-        if (!$items) {
-            $items = \R::findAll('items');
-            App::$app->cache->set('items', $items);
-        }
-        */
-        //$items = \R::findAll('items');
-        $items = $model->getAllDolls();
-        //$menu  = \R::findAll('mmenu');
-        //$menu = $model->getMainMenu();
-        //
+        //$items = $model->getAllDolls();
         $title = 'Главная';
+        $stylefile = WWW . '/include/mainstyle.inc';
         \vendor\hmd\core\base\View::setMeta('Главная страница', 'Описане страницы', 'Ключевые слова');
-        $this->set(compact('title','items','menu'));
+        $this->set(compact('title','items','menu','stylefile'));
     } 
+    
     /**
+     * Страница куколок
+     */
+    public function dollsAction()
+    {
+        $model = new Main();
+        $items = $model->getItems('dolls');
+        $page  = $model->getPageRequis('dolls');
+        $title = 'Куколки';
+        $this->view = 'items';
+        \vendor\hmd\core\base\View::setMeta('Куклы страница', 'Описане страницы', 'Ключевые слова');
+        $this->set(compact('title','items','page','menu'));
+    }
+
+    /**
+     * Страница выкроек
+     */
+    public function patternsAction()
+    {
+        $model = new Main();
+        $items = $model->getItems('patterns');
+        $page  = $model->getPageRequis('patterns');
+        $title = 'Выкройки';
+        $this->view = 'items';
+        \vendor\hmd\core\base\View::setMeta('Куклы страница', 'Описане страницы', 'Ключевые слова');
+        $this->set(compact('title','items','page','menu'));
+    }
+    
+        /**
+     * Страница куколок
+     */
+    public function setsAction()
+    {
+        $model = new Main();
+        $items = $model->getItems('sets');
+        $page  = $model->getPageRequis('sets');
+        $title = 'Наборы';
+        $this->view = 'items';
+        \vendor\hmd\core\base\View::setMeta('Куклы страница', 'Описане страницы', 'Ключевые слова');
+        $this->set(compact('title','items','page','menu'));
+    }
+
+    
+    
+        /**
      *  Отправляет запрос на почту владельца сайта
      *  со страницы экземпляра куклы.
      *  Информацию получает из суперглобального массива $_POST
@@ -56,6 +95,10 @@ class MainController extends AppController {
            
            $res = mail($reciever, $subject, $msg, $headers);
            echo 'Сообщение от ' .$name . ', его адрес: ' . $from . ', Код: ' . $res;
+           $logger = new Logger('postman');
+           $logger->pushHandler(new StreamHandler(WWW.'/applogs/mail.log', Logger::INFO));
+           $infostr = " ## {$subject} , содержание: {$msg}";
+           $logger->info($infostr);
         }
         exit();
     }
@@ -67,17 +110,22 @@ class MainController extends AppController {
     public function itemAction()
     {
         $model = new Main();
-        $this->layout = 'showitem';
+        //$this->layout = 'showitem';
         $this->view = 'item';
         $item_id = $_GET['id'];
         $title = 'Одна кукла';
         $one_item = $model->getOneDoll($item_id);
         $pics = $model->getPictures($item_id);
+        $video = $model->getVideo($item_id);
+        $modalfile = WWW . '/include/modalvideoitem.inc';
+        $stylefile = WWW . '/include/showitemstyle.inc';
         \vendor\hmd\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
-        $this->set(compact('title', 'one_item','menu', 'pics'));
+        $this->set(compact('title', 'one_item','menu', 'pics','video','modalfile','stylefile'));
    
     }
-    
+    /**
+     * Обрабатывает заказ
+     */
     public function orderAction() 
     {
         $model = new Main();
@@ -91,17 +139,24 @@ class MainController extends AppController {
         $this->set(compact('title', 'one_item','menu', 'pics'));
         
     }
-    
+    /**
+     * Страница "О нас"
+     */
     public function aboutAction()
     {
         $model = new Main();
-        
+        $title = 'О нас';
+        $this->set(compact('title'));
     }
     
+    /**
+     * Страница Оплата и доставка
+     */
     public function howtopayAction()
     {
         $model = new Main();
-        
+        $title = 'Оплата и доставка';
+        $this->set(compact('title'));
     }
     
 }

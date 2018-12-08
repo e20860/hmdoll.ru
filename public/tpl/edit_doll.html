@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../img/favicon.ico">
 
-    <title>Куколки</title>
+    <title>Редактирование куклы</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -46,42 +46,44 @@
     </nav>
 
     <main role="main" class="container">
-		<p class="h1 text-center">Редактирование информации о кукле</p>
+		<p class="h1 text-center">Редактирование информации об изделии</p>
 		<hr>
 	
 		<form>
 		  <div class="form-group row">
+			<label for="inputArticul" class="col-sm-2 col-form-label text-left">Артикул</label>
+			<div class="col-sm-4">
+			 <select class="custom-select mr-sm-4" id="inputType">
+					<option selected>Выбрать...</option>
+					<option value="1">Кукла-обнимашка</option>
+					<option value="2">Конь в пальто</option>
+					<option value="3">Небедная овечка</option>
+					<option value="4">Поросёнок-символ года</option>
+				  </select>		 
+			</div>
+			<label for="inputType" class="col-sm-2 col-form-label text-right">Тип</label>
+			<div class="col-sm-4">
+			 <select class="custom-select mr-sm-4" id="inputType">
+					<option selected>Выбрать...</option>
+					<option value="1">Кукла</option>
+					<option value="2">Выкройка</option>
+					<option value="3">Набор</option>
+				  </select>		 
+			</div>
+		</div>
+		<div class="form-group row">
 			<label for="inputName" class="col-sm-2 col-form-label">Наименование</label>
 			<div class="col-sm-10">
-			  <input type="text" class="form-control" id="inputName" placeholder="Наименование куклы">
+			  <input type="text" class="form-control" id="inputName" placeholder="Наименование">
 			</div>
+			
 		  </div>
 		  <div class="form-group row">
 			<label for="inputDesc" class="col-sm-2 col-form-label">Описание</label>
 			<div class="col-sm-10">
-			  <textarea class="form-control" id="inputDesc" rows="3" placeholder="Описание куклы"></textarea>
+			  <textarea class="form-control" id="inputDesc" rows="2" placeholder="Описание"></textarea>
 			</div>
 		  </div>
-		  <div class="form-group row">
-			<label for="inputPrice" class="col-sm-2 col-form-label">Цена</label>
-			<div class="col-sm-2">
-			  <input type="text" class="form-control" id="inputPrice" placeholder="Цена в рублях">
-			</div>
-			<label for="inputDim" class="col-sm-2 col-form-label text-right">Размеры</label>
-			<div class="col-sm-2">
-			  <input type="text" class="form-control" id="inputDim" placeholder="Размеры куклы">
-			</div>
-			<div class="col-sm-2 text-right">Готовность</div>
-			<div class="col-sm-2">
-			  <div class="form-check">
-				<input class="form-check-input" type="checkbox" id="gridCheck1">
-				<label class="form-check-label" for="gridCheck1">
-				  Разместить
-				</label>
-			  </div>
-			</div>
-		  </div>
-		  
 		  <div class="form-group row">
 			<label for="inputStatus" class="col-sm-2 col-form-label">Статус</label>
 			<div class="col-sm-2">
@@ -92,18 +94,14 @@
 					<option value="3">Для образца</option>
 				  </select>		 
 			</div>
-
-			<label for="inputType" class="col-sm-2 col-form-label text-right">Тип</label>
+		  
+			<label for="inputDim" class="col-sm-2 col-form-label text-right">Размеры</label>
 			<div class="col-sm-2">
-			 <select class="custom-select mr-sm-2" id="inputType">
-					<option selected>Выбрать...</option>
-					<option value="1">Игрушка</option>
-					<option value="2">Зверушка</option>
-					<option value="3">Коллекционная</option>
-				  </select>		 
+			  <input type="text" class="form-control" id="inputDim" placeholder="Размеры куклы">
 			</div>
-
-			<label for="inputMaterials" class="col-sm-2 col-form-label text-right">Материалы</label>
+			<div class="col-sm-2">
+ 			<label for="inputMaterials" class="col-sm-2 col-form-label text-right">Материалы</label>
+			</div>
 			<div class="col-sm-2">
 			 <select class="custom-select mr-sm-2" id="inputMaterials">
 					<option selected>Выбрать...</option>
@@ -112,24 +110,24 @@
 					<option value="3">Железобетон</option>
 				  </select>		 
 			</div>
-			
 		  </div>
 		  
 		  <div class="form-group row">
-			<label for="inputDelivery" class="col-sm-2 col-form-label">Доставка</label>
-			<div class="col-sm-6">
-			 <select class="custom-select mr-sm-6" id="inputDelivery">
-					<option selected>Выбрать...</option>
-					<option value="1">Шаблон № 1 (По России - бесплатно, за кордон - за ваш счёт)</option>
-					<option value="2">Шаблон №2 (Всё - за деньги)</option>
-					<option value="3">Для образца</option>
-				  </select>		 
+			<label for="inputPrice" class="col-sm-2 col-form-label">Цена</label>
+			<div class="col-sm-2">
+			  <input type="text" class="form-control" id="inputPrice" placeholder="Цена в рублях">
 			</div>
-			<div class="col-sm-4 text-right">
-			  <button type="submit" class="btn btn-warning">Добавить шаблон</button>
+			<div class="col-sm-5">
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" id="gridCheck1">
+				<label class="form-check-label" for="gridCheck1">
+				  Разместить на витрине магазина
+				</label>
+			  </div>
 			</div>
 
-		  </div>	
+		  
 		  <hr>
 		  <div class="form-group row">
 			<p class="h4">Изображения для витрины (не более 6)</p>
@@ -138,7 +136,7 @@
 			
 			<div class="col-sm-2">
 				<div class="card" style="">
-				  <img class="card-img-top" src="../img/IMG-20180415-WA0006.jpg" alt="image #1">
+				  <img class="card-img-top" src="../img/dun01.jpg" alt="image #1">
 				  <div class="card-body">
 					<p class="card-title">Фото №1</p>
 					<a href="#" class="btn btn-secondary">Удалить</a>
@@ -148,7 +146,7 @@
 			
 			<div class="col-sm-2">
 				<div class="card" style="">
-				  <img class="card-img-top" src="../img/IMG-20180407-WA0011.jpg" alt="image #2">
+				  <img class="card-img-top" src="../img/dun02.jpg" alt="image #2">
 				  <div class="card-body">
 					<p class="card-title">Фото №2</p>
 					<a href="#" class="btn btn-secondary">Удалить</a>
@@ -158,7 +156,7 @@
 
 			<div class="col-sm-2">
 				<div class="card" style="">
-				  <img class="card-img-top" src="../img/IMG-20180407-WA0009.jpg" alt="image #3">
+				  <img class="card-img-top" src="../img/dun03.jpg" alt="image #3">
 				  <div class="card-body">
 					<p class="card-title">Фото №3</p>
 					<a href="#" class="btn btn-secondary">Удалить</a>
@@ -168,7 +166,7 @@
 
 			<div class="col-sm-2">
 				<div class="card" style="">
-				  <img class="card-img-top" src="../img/IMG-20180407-WA0007.jpg" alt="image #4">
+				  <img class="card-img-top" src="../img/dun04.jpg" alt="image #4">
 				  <div class="card-body">
 					<p class="card-title">Фото №4</p>
 					<a href="#" class="btn btn-secondary">Удалить</a>
@@ -178,7 +176,7 @@
 
 			<div class="col-sm-2">
 				<div class="card" style="">
-				  <img class="card-img-top" src="../img/IMG_20180909_151407.jpg" alt="image #5">
+				  <img class="card-img-top" src="../img/mun01.jpg" alt="image #5">
 				  <div class="card-body">
 					<p class="card-title">Фото №5</p>
 					<a href="#" class="btn btn-secondary">Удалить</a>

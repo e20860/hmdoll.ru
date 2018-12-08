@@ -5,13 +5,13 @@
  * Авторские права на этот проект не распространяются
  * Открытый фреймворк.
  */
-require 'rb-mysql.php';
-$db = require '../config/config_db.php';
-R::setup($db['dsn'], $db['user'], $db['pass']);
-R::fancyDebug(TRUE);
+//require 'rb-mysql.php';
+//$db = require '../config/config_db.php';
+//R::setup($db['dsn'], $db['user'], $db['pass']);
+//R::fancyDebug(TRUE);
 //var_dump(R::testConnection());
 
-
+echo'<pre>'. print_r( $_POST) .'</pre>';
 // create
 //$cat = R::dispense('category');
 //$cat->title = 'Категория 1';
@@ -39,7 +39,7 @@ R::fancyDebug(TRUE);
 //$cats = R::findAll('category'); // все запси
 //$cats = R::findAll('category', 'id > 2');
 //print_r($cats);
-$cats = R::findAll('category', 'title LIKE ?', ['%1%']);
-print_r($cats);
+//$cats = R::findAll('category', 'title LIKE ?', ['%1%']);
+//print_r($cats);
 
 
