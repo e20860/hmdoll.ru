@@ -7,6 +7,14 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	// ... KC Finder
+	   config.filebrowserBrowseUrl = 'http://hmdoll.ru/public/js/kcfinder/browse.php?opener=ckeditor&type=files';
+	   config.filebrowserImageBrowseUrl = 'http://hmdoll.ru/public/js/kcfinder/browse.php?opener=ckeditor&type=images';
+	   config.filebrowserFlashBrowseUrl = 'http://hmdoll.ru/public/js/kcfinder/browse.php?opener=ckeditor&type=flash';
+	   config.filebrowserUploadUrl = 'http://hmdoll.ru/public/js/kcfinder/upload.php?opener=ckeditor&type=files';
+	   config.filebrowserImageUploadUrl = 'http://hmdoll.ru/public/js/kcfinder/upload.php?opener=ckeditor&type=images';
+	   config.filebrowserFlashUploadUrl = 'http://hmdoll.ru/public/js/kcfinder/upload.php?opener=ckeditor&type=flash';
+	// ...
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
@@ -20,7 +28,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'others' },
 		'/',
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align','justify', 'bidi' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
 		{ name: 'about' }
@@ -37,4 +45,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	// extra plugins
 	config.extraPlugins = 'ajax,xml';
+	config.extraPlugins = 'justify';
 };

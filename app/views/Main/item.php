@@ -1,5 +1,5 @@
 <main role="main" class="container">
-    <p class="h1 text-center">Подробнее об изделии</p>
+    <p class="h1 text-center">Подробнее о товаре</p>
 	<hr>
         
 	<div class="row">

@@ -51,17 +51,12 @@ class Main extends \vendor\hmd\core\base\Model{
     {
         return \R::getAll("SELECT `header`,`description` FROM `pages` WHERE name = ? ", [$page])[0];
     }
-
-
-    /**
-     *  
-     * @return bean
-     */
     
     /**
      * Осуществляет запрос к таблице товаров (кукол)
      * и возвращает  объект типа bean
      * @param integer $id
+     * @return bean
      */
     public function getOneDoll($id)
     {
@@ -117,4 +112,17 @@ class Main extends \vendor\hmd\core\base\Model{
     {
         return \R::findAll('mmenu');
     } 
+    /**
+     * Возвращает набор данных для первой страницы
+     * @return array
+     */
+    public function getHome()
+    {
+        $sql = 'SELECT `ord`, `img`, `header`, `content`, `link` FROM `home` WHERE `type` = ?';
+        $ret['carouselle'] = \R::getAssoc($sql,['carouselle']);
+        $ret['subheader'] = \R::getAssoc($sql,['subheader']);
+        $ret['article'] = \R::getAssoc($sql,['article']);
+        $ret['buttons'] = array('','Перейти','Перейти','Перейти');
+        return $ret;
+    }
 }

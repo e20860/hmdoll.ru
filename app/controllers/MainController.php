@@ -25,11 +25,11 @@ class MainController extends AppController {
     public function indexAction() {
         
         $model = new Main();
-        //$items = $model->getAllDolls();
+        $dataset = $model->getHome();
         $title = 'Главная';
         $stylefile = WWW . '/include/mainstyle.inc';
         \vendor\hmd\core\base\View::setMeta('Главная страница', 'Описане страницы', 'Ключевые слова');
-        $this->set(compact('title','items','menu','stylefile'));
+        $this->set(compact('title','dataset','menu','stylefile'));
     } 
     
     /**
@@ -74,7 +74,17 @@ class MainController extends AppController {
         $this->set(compact('title','items','page','menu'));
     }
 
-    
+     public function mclassAction()
+    {
+        $model = new Main();
+        $items = $model->getItems('mclass');
+        $page  = $model->getPageRequis('mclass');
+        $title = 'Мастер-классы';
+        $this->view = 'items';
+        \vendor\hmd\core\base\View::setMeta('Куклы страница', 'Описане страницы', 'Ключевые слова');
+        $this->set(compact('title','items','page','menu'));
+    }
+   
     
         /**
      *  Отправляет запрос на почту владельца сайта

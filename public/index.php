@@ -37,8 +37,8 @@ new vendor\hmd\core\App;
 
 // Пользовательские маршруты (если надо что-то сделать нестандартно)
 // например, перенаправить pages на Posts
-Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller'=> 'Page']);
-Router::add('^page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'view']);
+//Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller'=> 'Page']);
+//Router::add('^page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'view']);
 
 Router::add('^about$', ['controller'=> 'Main', 'action' => 'about']);
 Router::add('^howtopay$', ['controller'=> 'Main', 'action' => 'howtopay']);

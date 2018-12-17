@@ -20,7 +20,7 @@ class Slavko extends \vendor\hmd\core\base\Model{
     }
     /**
      *  ВОзвращает список товаров по их типу
-     * @param string $itemType тип товаров
+     * @param string $item_type тип товаров
      */
     public function getItems($item_type = 'dolls') {
         $type = \R::getAssoc("SELECT * FROM types WHERE menu = ? LIMIT 1", [$item_type]);
@@ -161,6 +161,15 @@ class Slavko extends \vendor\hmd\core\base\Model{
             case 'maillog':
                 $fname =  WWW . '/applogs/mail.log';
                 break;
+            case 'howtopay':
+                $fname =  ROOT . '/app/views/Main/howtopay.php';
+                break;
+            case 'about':
+                $fname =  ROOT . '/app/views/Main/about.php';
+                break;
+        }
+        if(!isset($fname)) {
+            throw new \Exception('Не удалось найти файл: ' .$key);
         }
         return $fname;
     }

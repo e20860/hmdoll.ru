@@ -21,7 +21,7 @@ class SlavkoController extends SlController{
      * Главная страница админки
      */
     public function indexAction() {
-        $this->checkLogin();
+        checkLogin();
         $model = new Slavko();
         $items = $model->getAllDolls();
         $title = 'Управление магазином';
@@ -54,7 +54,7 @@ class SlavkoController extends SlController{
      */
     public function itemsAction()
     {
-        $this->checkLogin();
+        checkLogin();
         $this->view = 'items';
         $model = new Slavko();
         if(isset($_GET['item'])) {
@@ -126,7 +126,7 @@ class SlavkoController extends SlController{
      */
     public function vocsAction()
     {
-        $this->checkLogin();
+        checkLogin();
         $this->view = 'edit_vocs';
         $model = new Slavko();
         $title = 'Общие справочники';
@@ -138,7 +138,7 @@ class SlavkoController extends SlController{
      */
     public function userAction()
     {
-        $this->checkLogin();
+        checkLogin();
         $model = new Slavko();
         if(isset($_POST['login'])){
             $model->addUser($_POST);
@@ -151,6 +151,23 @@ class SlavkoController extends SlController{
         $title = 'Пользователи';
         $this->set(compact('title','users'));
     }
+    /**
+     * Выводит на редактирование страницы
+     */
+    public function editpagesAction()
+    {
+        $this->view = 'pagesedt';
+        $model = new Slavko();
+        $fname = filter_input(INPUT_GET, 'fname',FILTER_SANITIZE_SPECIAL_CHARS);
+        $file = $model->getFileName($fname);
+        if(!is_file($file)){ 
+            throw new Exception( 'Файл ' .$fname . ' не найден');
+        }
+        $title = 'Редактирование страниц';
+        $pcontent = file_get_contents($file);
+        $this->set(compact('title','pcontent','fname'));
+    }
+
     /**
      * Возвращает файл настроек или протокола для админки
      */
@@ -170,14 +187,16 @@ class SlavkoController extends SlController{
     public function savelogsAction() 
     {
         $this->layout = null;
-        if(isset($_POST)) {
-            $filename = $this->getFileName($_POST['fname']);
-            $file = $_POST['txtedt'];
-             if(is_file($filename)){
-                 file_put_contents($filename, $file);
+        $model = new Slavko();
+        $fname = filter_input(INPUT_POST, 'fname',FILTER_SANITIZE_SPECIAL_CHARS);
+        if(isset($fname)) {
+            $filename = $model->getFileName($fname);
+            $fcontent = filter_input(INPUT_POST, 'txtedt');
+            if(is_file($filename)){
+                 file_put_contents($filename, $fcontent);
              }
         }
-        redirect();
+        header("Location: /slavko/index");
     }
     /**
      * Загружает на сервер картинку изделия (куклы) по запросу ajax
@@ -257,18 +276,4 @@ class SlavkoController extends SlController{
         header("Location: /slavko/items?item={$_SESSION['item_type']}");
     }
 
-    /**
-     * Проверяет, был ли корректный вход в систему
-     * и, если нет - выход откуда пришли
-     */
-    private function checkLogin()
-    {
-        if(isset($_SESSION['tmp'])) {
-            if($_SESSION['tmp'] != "04091957") {
-                redirect();
-            }
-        } else {
-            redirect();
-        }
-    }
 }

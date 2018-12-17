@@ -42,3 +42,18 @@ function redirect()
     }
     header("Location: {$right_path}");
 }
+
+    /**
+     * Проверяет, был ли корректный вход в систему
+     * и, если нет - выход откуда пришли
+     */
+    function checkLogin()
+    {
+        if(isset($_SESSION['tmp'])) {
+            if($_SESSION['tmp'] != "04091957") {
+                redirect();
+            }
+        } else {
+            redirect();
+        }
+    }
