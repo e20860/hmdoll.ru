@@ -13,7 +13,7 @@ $buttons = $dataset['buttons'];
         <div class="carousel-inner">
         <?php foreach ($carouselle as $key => $value):?>    
           <div class="carousel-item <?php echo $key == 1? ' active':''; ?>">
-            <img class="first-slide h-100" src="../img/<?php echo $value['img']; ?>" alt="N slide">
+            <img class="first-slide h-100" src= "<?php echo '/public/img/' . $value['img']; ?>" alt="N slide">
             <div class="container">
               <div class="carousel-caption text-left">
                 <h1><?php echo $value['header']; ?></h1>
@@ -40,7 +40,7 @@ $buttons = $dataset['buttons'];
         <div class="row">
             <?php foreach ($subheader as $key => $value):?> 
             <div class="col-lg-4">
-                <img class="rounded-circle" src="../img/<?php echo $value['img']; ?>" alt="image" width="140" height="140">
+                <img class="rounded-circle" src="/public/img/<?php echo $value['img']; ?>" alt="image" width="140" height="140">
                 <h2><?php echo $value['header']; ?></h2>
                 <p><?php echo $value['content']; ?></p>
                 <p><a class="btn btn-secondary" href="<?php echo $value['link']; ?>" role="button"><?php echo $buttons[$key]; ?>&raquo;</a></p>
@@ -56,7 +56,7 @@ $buttons = $dataset['buttons'];
                 <p class="lead"><?php echo $value['content']; ?></p>
             </div>
             <div class="col-md-5 <?php echo ($key%2)? '':' order-md-1'?>">
-               <img class="featurette-image img-fluid mx-auto" src="../img/<?php echo $value['img']; ?>" alt="image">
+               <img class="featurette-image img-fluid mx-auto" src="/public/img/<?php echo $value['img']; ?>" alt="image">
             </div>
         </div>
         <hr class="featurette-divider">

@@ -20,7 +20,7 @@ define('LAYOUT','default');
 
 $query = rtrim($_SERVER['QUERY_STRING'],'/');
 
-require '../vendor/hmd/libs/functions.php';
+require ROOT .'/vendor/hmd/libs/functions.php';
 
 // Классы грузятся и регистрируются автоматом
 //spl_autoload_register(function($class){
@@ -31,7 +31,7 @@ require '../vendor/hmd/libs/functions.php';
 //});
 
 // Вместо собственного автозагрузчика - Composer
-require_once '..\vendor\autoload.php';
+require_once ROOT .'/vendor/autoload.php';
 // Запускаем проложение
 new vendor\hmd\core\App;
 
