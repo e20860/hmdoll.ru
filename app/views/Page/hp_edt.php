@@ -13,7 +13,7 @@
                   <input type="hidden" name="id" value="<?php echo $id ?>" >   
 		  <div class="form-row">
 			<div class="form-group col-md-3 text-center">
-                            <img id="jpg" src="../img/<?php echo $item['img']; ?>" width="100%" class="image-fluid" >
+                            <img id="jpg" src="/public/img/<?php echo $item['img']; ?>" width="100%" class="image-fluid" >
 			</div>
 			<div class="form-group col-md-5">
 			  <label for="inputFile">Изображение</label>
@@ -101,7 +101,7 @@
                 type: 'post',
                 success: function(response) {
                     fname = response;
-                    $("#jpg").attr('src','../img/'+fname);
+                    $("#jpg").attr('src','/public/img/'+fname);
                 },
                 error: function(r,t, e){
                     alert('Ошибка: ' + e);

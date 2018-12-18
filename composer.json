@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-		"monolog/monolog": "^1.2.4*"
-	},
+        "monolog/monolog": "^1.24"
+    },
     "autoload": {
         "psr-4": {
             "vendor\\hmd\\": "vendor\\hmd\\",
@@ -18,4 +18,3 @@
         }
     }
 }
-

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Интернет-магазин продажа кукол ручной работы">
-    <meta name="author" content="Е. Славко">
+    <meta name="author" content="Eugenie" >
     <link rel="icon" href="../favicon.ico">
     <title><?php echo isset($title) ? $title:'Магазин HMDoll'; ?></title>
     <?php vendor\hmd\core\base\View::getMeta()?>
@@ -14,7 +14,7 @@
     <!-- Custom styles for this template -->
     <link href="/public/css/navbar-top.css" rel="stylesheet">
     <!-- CKEditor -->
-    <script type="text/javascript" src="../js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/public/js/ckeditor/ckeditor.js"></script>
 
     <?php 
     

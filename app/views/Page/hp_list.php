@@ -22,7 +22,7 @@
                       <?php foreach ($dataset as $k => $v):?>
 			<tr>
 			  <th scope="row" class="id"><?php echo $k?></th>
-			  <td width="10%"><img width="80%" src="../img/<?php echo $v['img']?>"></td>
+			  <td width="10%"><img width="80%" src="/public/img/<?php echo $v['img']?>"></td>
 			  <td><?php echo $v['type']?></td>
 			  <td><?php echo $v['ord']?></td>
 			  <td><?php echo $v['header']?></td>
