@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Интернет-магазин продажа кукол ручной работы">
     <meta name="author" content="Eugenie" >
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="/public/favicon.ico">
     <title><?php echo isset($title) ? $title:'Магазин HMDoll'; ?></title>
     <?php vendor\hmd\core\base\View::getMeta()?>
     <!-- Bootstrap core CSS -->
