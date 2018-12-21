@@ -217,4 +217,50 @@ class Slavko extends \vendor\hmd\core\base\Model{
         \R::exec('DELETE FROM `sw_video` WHERE `item` = ?', array($item_id));
     }
     
+    /**
+     * Возвращает список справочников
+     * @return array
+     */
+    public function getVocList()
+    {
+        $sql = 'SELECT * FROM `vocs`';
+        return \R::getAssoc($sql);
+    }
+    /**
+     * Возвращает содержимое справочника $name, при необходимости (transform=true)
+     * конвертирует его в ассоциативный массив
+     * @param string  $name наименование справочника
+     * @param boolean $transform флаг необходимости конвертации
+     * @return bean/array содержимое справочника
+     */
+    public function getVocContent($name, $transform = false)
+    {
+        $rv = \R::findAll($name);
+        if($transform) {
+            $rv = \R::exportAll($rv);
+        }
+        return $rv;
+    }
+    /**
+     *  Сохраняет строку справочника $name с id = $itemId и данными $itemData
+     * @param type $name
+     * @param type $itemId
+     * @param type $itemData
+     */
+    public function saveVocItem($name, $itemId, $itemData)
+    {
+        if(empty($itemId)) {
+            $item = \R::dispense($name);
+        } else {
+            $item = \R::load($name, $itemId);
+        }
+        $item->name = $itemData;
+        \R::store($item);
+    }
+    
+    public function delVocItem($name, $itemId)
+    {
+        $item = \R::load($name, $itemId);
+        \R::trash($item);
+    }
 }

@@ -24,7 +24,7 @@
                     <div class="row align-middle">
                             <div class="col-sm-1"><?php echo $item['id']; ?></div>
                             <div class="col-sm-1">
-                                    <img class="img-fluid" src="<?php echo '../img/' . $item['picture'];?>">
+                                    <img class="img-fluid" src="<?php echo '/public/img/' . $item['picture'];?>">
                             </div>
                             <div class="col-sm-2"><?php echo $item['articul']; ?></div>
                             <div class="col-sm-2"><?php echo $item['name']; ?></div>

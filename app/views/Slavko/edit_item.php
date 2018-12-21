@@ -107,7 +107,7 @@
         <?php foreach ($images as $key => $value): ?>
             <div class="col-sm-2 item">
                     <div class="card" style="">
-                      <img class="card-img-top" src="<?php echo '../img/' . $value['file']?>" alt="image #1">
+                      <img class="card-img-top" src="<?php echo '/public/img/' . $value['file']?>" alt="image #1">
                       <div class="card-body">
                             <p class="card-title"><?php echo 'Фото №' . $value['num'] ?></p>
                             <button type="button" class="btn btn-secondary del">Удалить</button>
@@ -162,7 +162,7 @@
                     success: function(response){
                         var finfo = $.parseJSON(response);
                         var phnum  = 'Фото №' + finfo.num;
-                        var fname = '../img/' + finfo.file;
+                        var fname = '/public/img/' + finfo.file;
                         $(".items").append(tpl.clone());
                         $(".item:last img").attr('src',fname);
                         $(".item:last .card-title").html(phnum);
@@ -194,7 +194,7 @@
     // Навешиваем на новую карточку атрибутику (фото, подпись, обработчик)
     function setcard(key,value) {
         $(".items").append(tpl.clone());
-        var fname = '../img/' + value.file,
+        var fname = '/public/img/' + value.file,
             phnum  = 'Фото №' + value.num;
         $(".item:last img").attr('src',fname);
         $(".item:last .card-title").html(phnum);
