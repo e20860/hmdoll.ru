@@ -79,7 +79,7 @@
     
     $(".optvoc").on('click', function() {
         var table = $(this).val();
-        $.post('/slavko/changeVoc', {"vocname": table},
+        $.post('/vocs/changeVoc', {"vocname": table},
         function(data) {
             var arr = JSON.parse(data);
             refreshList(arr);
@@ -121,7 +121,7 @@
         // Сохраняет отредактированную или новую запись элемента справочника
         var curVoc = $("#inputTypeVoc").val();
         //alert('Сохраняю в таблицу ' + curVoc + ' данные: id-> ' + id + ' текст-> ' + text);
-        $.post('/slavko/saveVocItem', {"vocname": curVoc, "itemid": id, "itemdata": text},
+        $.post('/vocs/saveVocItem', {"vocname": curVoc, "itemid": id, "itemdata": text},
         function(data) {
             var arr = JSON.parse(data);
             refreshList(arr);
@@ -134,7 +134,7 @@
         var curVoc = $("#inputTypeVoc").val();
         var id   = obj.parent().parent().children()[0].innerHTML;
         //alert('Удаляю из таблицы ' + curVoc + ' данные: id-> ' + id);
-        $.post('/slavko/delVocItem', {"vocname": curVoc, "itemid": id},
+        $.post('/vocs/delVocItem', {"vocname": curVoc, "itemid": id},
         function(data) {
             var arr = JSON.parse(data);
             refreshList(arr);

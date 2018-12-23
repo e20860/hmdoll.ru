@@ -14,7 +14,7 @@
     <p class="h1 text-center"><?php echo $hdr; ?></p>
     <hr>
 
-    <form method="post" action="/slavko/saveItem">
+    <form method="post" action="/items/saveItem">
         <input type="hidden" name="id" value="<?php echo $item_id?>">
         <div class="form-group row">
             <label for="inputArticul" class="col-sm-2 col-form-label text-left">Артикул</label>
@@ -152,7 +152,7 @@
         var form_data = new FormData();
         form_data.append('file', file_data);
         $.ajax({
-                    url: '/slavko/upload',
+                    url: '/items/upload',
                     dataType: 'text',
                     cache: false,
                     contentType: false,
@@ -180,12 +180,12 @@
     // Удалить все картинки
     $(".delAll").click(function(){
         $(".item").remove();
-        $.get('/slavko/clearImages');
+        $.get('/items/clearImages');
     });
     // Удаление карточки с картинкой изделия
     function deletepicture() {
         var numpic = $(this).parent().find(".card-title").html().slice(-1);
-        $.get('/slavko/delimg',{num: numpic},function(data){
+        $.get('/items/delimg',{num: numpic},function(data){
             $(".item").remove(); 
             var pics = $.parseJSON(data);
             $.each(pics, setcard);
