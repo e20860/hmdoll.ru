@@ -183,8 +183,11 @@ class Slavko extends \vendor\hmd\core\base\Model{
         $images  = $dataset['images'];
         if($item['id']==0) { // Новое изделие
             $curitem = \R::dispense('items');
+            $curvideo = \R::dispense('sw_video');
         } else { // Изделие есть...
             $curitem = \R::load('items', $item['id']);
+            $sql = "SELECT * FROM `sw_video` WHERE item = ?";
+            $curvideo = \R::find('sw_video', $sql, [$item['id']])
         }
         $curitem->articul = $item['articul'];
         $curitem->type = $item['type'];
@@ -196,7 +199,12 @@ class Slavko extends \vendor\hmd\core\base\Model{
         $curitem->price = $item['price'];
         $curitem->ready = isset($item['ready'])?1:0;
         $_SESSION['item_id'] = \R::store($curitem);
+        $curvideo->item = $_SESSION['item_id'];
+        $curvideo->file = $item['video'];
+        \R::store($curvideo);
         $this->saveImages($images);
+        
+        
     }
     
     public function saveImages($data)

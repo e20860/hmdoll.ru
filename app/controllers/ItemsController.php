@@ -165,4 +165,18 @@ class ItemsController extends SlController {
         $model->saveItem($dataset);
         header("Location: /items/items?item={$_SESSION['item_type']}");
     }
+    public function setvideoAction()
+    {
+        $this->layout = null;
+        $path = WWW . '/video/';
+        $fname = $_FILES['vfile']['name'];
+        if (0 < $_FILES['vfile']['error']) {
+            echo 'Error: ' . $_FILES['vfile']['error'] . '<br>';
+        } else {
+            move_uploaded_file($_FILES['vfile']['tmp_name'], $path . $fname);
+            echo $fname;
+        }
+        exit();
+    }
+    
 }

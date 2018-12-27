@@ -10,6 +10,7 @@
         $statuses = $dataset['statuses'];
         $materials = $dataset['materials'];
         $images = ($dataset['images']);
+        $video = current($dataset['video']);
     ?>
     <p class="h1 text-center"><?php echo $hdr; ?></p>
     <hr>
@@ -134,6 +135,26 @@
         </div>
         <hr>
         <div class="form-group row">
+            <div class="col-sm-12 text-left">
+                <p class="h4">Видео для изделия</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <p id="vfile">Файл: 
+                    <?php echo ($video=='video1.mp4'||empty($video))? 'не назначен':$video['file']; ?>
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <input type="file" id="fvid" accept="video/*">
+                <p><small>Выбрать файл видео</small></p>
+            </div>
+            <div class="col-sm-4">
+                <input type="hidden" id="video" name="video" value="<?php echo $video; ?>">
+            </div>            
+        </div>    
+        <hr>
+        <div class="form-group row">
             <div class="col-sm-12 text-right">
               <button type="submit" class="btn btn-primary">Сохранить данные об изделии</button>
             </div>
@@ -200,6 +221,31 @@
         $(".item:last .card-title").html(phnum);
         $(".item:last .del").on('click', deletepicture);
     }
-    
+    // Кнопка загрузки видео
+    $('#fvid').on('change', function() {
+        var file_data = $('#fvid').prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('vfile', file_data);
+        $.ajax({
+                    url: '/items/setvideo',
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(response){
+                        var finfo = response;
+                        $("#vfile").html('Файл: '+ finfo);
+                        $('#video').val(finfo);
+                        alert('Файл: '+ finfo + ' успешно загружен на сервер');
+                    },
+                    error: function(r,t, e){
+                        alert('Ошибка: ' + e);
+                    }
+                    
+         });
+        
+    });
     
 </script>
