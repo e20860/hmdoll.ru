@@ -290,3 +290,4 @@
 [2018-12-18 10:54:36] erhan.ERROR: ошибка: Страница не найдена, файл: /home/eugenie/www/hmdoll.ru/vendor/hmd/core/Router.php, строка: 105 [] []
 [2018-12-18 10:54:37] erhan.ERROR: ошибка: Страница не найдена, файл: /home/eugenie/www/hmdoll.ru/vendor/hmd/core/Router.php, строка: 105 [] []
 [2018-12-18 10:54:53] erhan.ERROR: ошибка: move_uploaded_file(/home/eugenie/www/hmdoll.ru/public/img/shp04.jpg): failed to open stream: Permission denied, файл: /home/eugenie/www/hmdoll.ru/app/controllers/SlavkoController.php, строка: 212 [] []
+[2018-12-21 12:51:36] erhan.ERROR: ошибка: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hmdoll.vocs' doesn't exist, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\libs\rb-mysql.php, строка: 768 [] []
