@@ -6,7 +6,7 @@
 			
 			<div class="col-sm-2 text-right align-middle">
 				<br>
-				<a class="btn btn-primary" href="/slavko/addItem?item=<?php echo $item_type?>" role="button">Добавить...</a>
+				<a class="btn btn-primary" href="/items/addItem?item=<?php echo $item_type?>" role="button">Добавить...</a>
 			</div>
 		</div>
 		<hr>
@@ -31,10 +31,10 @@
                             <div class="col-sm-1"><?php echo $item['price']; ?></div>
                             <div class="col-sm-1"><?php echo $item['ready']?'Да':'Нет'; ?></div>
                             <div class="col-sm-2 text-center">
-                                    <a class="btn btn-secondary btn-sm" href="/slavko/editItem?id=<?php echo $item['id']; ?>" role="button">Редакт</a>
+                                    <a class="btn btn-secondary btn-sm" href="/items/editItem?id=<?php echo $item['id']; ?>" role="button">Редакт</a>
                             </div>
                             <div class="col-sm-2 text-center">
-                                    <a class="btn btn-danger btn-sm" href="/slavko/delItem?id=<?php echo $item['id']; ?>" role="button">Удалить</a>
+                                    <a class="btn btn-danger btn-sm" href="/items/delItem?id=<?php echo $item['id']; ?>" role="button">Удалить</a>
                             </div>
                     </div>	
                     <hr>

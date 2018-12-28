@@ -37,7 +37,7 @@
                                                     <p class="font-weight-normal"><?php echo $user['login'] ?></p>
                                             </div>
                                             <div class="col-sm-3">
-                                                    <a class="btn btn-secondary" href="/slavko/user?id=<?php echo $user['id'] ?>" role="button">Удалить</a>
+                                                    <a class="btn btn-secondary" href="/vocs/user?id=<?php echo $user['id'] ?>" role="button">Удалить</a>
                                             </div>
 
                                     </div>
@@ -49,7 +49,7 @@
 				   Новый
 				</p>
 				<hr>
-                                <form name="user" method="post" action="/slavko/user">
+                                <form name="user" method="post" action="/vocs/user">
 				  <div class="form-row">
 					<div class="col-md-4 mb-3">
 					  <label for="validationDefault01">Имя</label>
