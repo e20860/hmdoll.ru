@@ -125,4 +125,31 @@ class Main extends \vendor\hmd\core\base\Model{
         $ret['buttons'] = array('','Перейти','Перейти','Перейти');
         return $ret;
     }
+    
+    /**
+     * Сохраняет информацию о заказе в базе данных
+     * @param array $order
+     * @return string
+     */
+    public function storeOrder($order) 
+    {
+        $ordrec = \R::dispense('orders');
+        $numOfOrder = date('Ymd');
+        $ordrec->num = $numOfOrder;
+        $ordrec->item = $order['item'];
+        $ordrec->quantity = $order['quantity'];
+        $ordrec->amount = $order['amount'];
+        $ordrec->status = 'создан';
+        $ordrec->customer = $order['cust'];
+        $ordrec->details = $order['details'];
+        $ordrec->paid = 0;
+        $rid = \R::store($ordrec);
+        $numOfOrder .= $rid;
+        $orrc = \R::load('orders', $rid);
+        $orrc->num = $numOfOrder;
+        \R::store($orrc);
+        return $numOfOrder;
+    }
+    
+    
 }

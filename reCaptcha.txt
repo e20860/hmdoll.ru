@@ -1,0 +1,11 @@
+Код для HTML 6LfdrIYUAAAAALnjHC0sB7jT2nqLDcmhztuZx5pi
+Секретный код 6LfdrIYUAAAAANHONwEYxx3IKUGhd_KdBp4_mqJD
+перед тегом </head> в HTML-коде: <script src='https://www.google.com/recaptcha/api.js'></script>
+в конце <form> (там, где нужно разместить виджет reCAPTCHA):
+<div class="g-recaptcha" data-sitekey="6LfdrIYUAAAAALnjHC0sB7jT2nqLDcmhztuZx5pi"></div>
+
+Запрос
+URL: https://www.google.com/recaptcha/api/siteverify
+secret 	 6LfdrIYUAAAAANHONwEYxx3IKUGhd_KdBp4_mqJD
+response Значение "g-recaptcha-response".
+remoteip	IP-адрес конечного пользователя

@@ -95,6 +95,22 @@ class MainController extends AppController {
     public function questionAction() {
         $this->layout = null;
         if ($this->isAjax()) {
+            
+           //Проверка капчи
+           $rsp = filter_input(INPUT_POST, "g-recaptcha-response", FILTER_SANITIZE_STRING); 
+           if(!$rsp) {
+               echo 'Докажите, что Вы не робот...';
+               exit();
+           } 
+           $url = "https://www.google.com/recaptcha/api/siteverify";
+           $key = "6LfdrIYUAAAAANHONwEYxx3IKUGhd_KdBp4_mqJD";
+           $query = $url . '?secret='. $key . '&response=' . $rsp . '&remoteip=' .$_SERVER['REMOTE_ADDR'];
+           $ans = json_decode(file_get_contents($query));
+           if($ans->success == false) {
+               echo 'Не пройдена проверка на робота';
+               exit();
+           }
+           // проверку прошли
            $name  = htmlspecialchars(stripslashes($_POST['uName']));
            $from = htmlspecialchars(stripslashes($_POST['uEmail']));
            $msg   = htmlspecialchars(stripslashes($_POST['uQuestion']));
@@ -141,14 +157,54 @@ class MainController extends AppController {
         $model = new Main();
         $this->layout = 'default';
         $this->view = 'order';
-        $item_id = $_GET['id'];
+        $item_id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
         $title = 'Заказ';
         $one_item = $model->getOneDoll($item_id);
         $pics = $model->getPictures($item_id);
         \vendor\hmd\core\base\View::setMeta('Одна кукла', 'Страница представления одной куклы', 'Ключевые слова');
         $this->set(compact('title', 'one_item','menu', 'pics'));
+    }
+    
+    /**
+     * Сохраняет заказ и отправляет письма хозяину и заказчику
+     */
+    public function sendOrderAction()
+    {
+        $model = new Main();
+        $this->layout = null;
+        $item = filter_input(INPUT_POST,'item_id',FILTER_SANITIZE_NUMBER_INT);
+        $quantity = filter_input(INPUT_POST,'quantity',FILTER_SANITIZE_NUMBER_INT);
+        $amount = filter_input(INPUT_POST,'amount',FILTER_SANITIZE_NUMBER_INT);
+        $fam = filter_input(INPUT_POST,'family',FILTER_SANITIZE_STRING);
+        $nam = filter_input(INPUT_POST,'name',FILTER_SANITIZE_STRING);
+        $sur = filter_input(INPUT_POST,'surname',FILTER_SANITIZE_STRING);
+        $cust = $fam . ' ' . $nam . ' ' . $sur;
+        $email = 'email: ' . filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
+        $phone = 'телефон: ' . filter_input(INPUT_POST,'phone',FILTER_SANITIZE_STRING);
+        $adr = filter_input(INPUT_POST,'address',FILTER_SANITIZE_STRING);
+        $address = $adr ? 'адрес: ' . $adr : '';
+        $wish = 'Пожелания: ' . filter_input(INPUT_POST,'wishes',FILTER_SANITIZE_STRING);
+        $details = $email . ', ' . $phone .', ' . $address . ', ' .$wish;
+        $order = compact('item','quantity','amount','cust','details');
+        $ordnum = $model->storeOrder($order); // Уникальный номер заказа
+        // Отслать мыло
+        $this->sendMailSeller($item, $ordnum);
+        $this->sendMailCustomer($item, $ordnum, $email);
+        // Обратная информация для страницы заказа и переход на неё
+        $_SESSION['order_info'] ='Заказ №'. $ordnum .' для ' . $cust . ' сформирован';
+        header("Location: /main/order?id=" .$item);
+    }
+    
+    public function sendMailSeller($item_id,$order_num) 
+    {
         
     }
+    
+    public function sendMailCustomer($item_id,$order_num, $cust_email) 
+    {
+        
+    }
+    
     /**
      * Страница "О нас"
      */

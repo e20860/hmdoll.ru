@@ -187,7 +187,7 @@ class Slavko extends \vendor\hmd\core\base\Model{
         } else { // Изделие есть...
             $curitem = \R::load('items', $item['id']);
             $sql = "SELECT * FROM `sw_video` WHERE item = ?";
-            $curvideo = \R::find('sw_video', $sql, [$item['id']])
+            $curvideo = \R::find('sw_video', $sql, [$item['id']]);
         }
         $curitem->articul = $item['articul'];
         $curitem->type = $item['type'];

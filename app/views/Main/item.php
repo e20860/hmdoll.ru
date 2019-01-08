@@ -58,6 +58,8 @@
                                     <textarea class="form-control" name="uQuestion" id="uQuestion" rows="3" placeholder="Содержание вопроса" required></textarea>
 				</div>
 			  </div>
+                            <div class="g-recaptcha" data-sitekey="6LfdrIYUAAAAALnjHC0sB7jT2nqLDcmhztuZx5pi">
+                            </div>
                             <button type="submit" id="sendMess" class="btn btn-secondary mb-2">Отправить</button>
 			</form>
 			
@@ -66,6 +68,7 @@
 	
     </main>
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 	$('.btn-pic').click(function(){
 	    $src = $(this).attr("src");
@@ -94,13 +97,18 @@
             alert(errors);
             return false;
         }
-        //
+        // console.log('Ошибки проверены'); http://hmdoll.ru
         $.ajax({
-               url: 'http://hmdoll.ru/main/question',
+               url: '/main/question',
                type: 'post',
                data: $form.serialize(),
-              success: function(response){
+               success: function(response){
                    alert(response);
+                   window.location.reload();
+              },
+              error: function(e) {
+                  console.log(e);
+                  alert('Сообщение не отправлено. Ошибка');
               }
        }); // end ajax({...})
         

@@ -23,10 +23,10 @@
             <h2>Оплата</h2>
 			<hr>
             <p>Наличный расчет (при доставке по Новосибирску)</p>
-			<p>Перевод на карту Сбербанка 65748322729473</p>
+            <p>Перевод на карту <a href="https://online.sberbank.ru/CSAFront/index.do">Сбербанка</a> 4276 4406 1359 7084</p>
 			<p>Наложенный платеж (при доставке Почтой России)</p>
-			<p>Яндекс.Деньги </p>
-			<p>PayPal 548743874398340943</p>
+                        <p><a href="https://money.yandex.ru/to/410017308170797">Яндекс.Деньги</a></p>
+                        <p><a href="https://www.paypal.me/SlavkoEvg?ppid=PPC000628&cnac=RU&rsta=ru_RU(ru_RU)&cust=VSREALSFADMXL&unptid=6d880c92-125f-11e9-bfb3-441ea1479d80&t=&cal=c8fbc53ea959b&calc=c8fbc53ea959b&calf=c8fbc53ea959b&unp_tpcid=ppme-social-user-profile-created&page=main:email&pgrp=main:email&e=op&mchn=em&s=ci&mail=sys">PayPal</a></p>
           </div>
           <div class="col-md-6">
             <h2>Доставка</h2>
