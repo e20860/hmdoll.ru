@@ -179,7 +179,8 @@ class MainController extends AppController {
         $nam = filter_input(INPUT_POST,'name',FILTER_SANITIZE_STRING);
         $sur = filter_input(INPUT_POST,'surname',FILTER_SANITIZE_STRING);
         $cust = $fam . ' ' . $nam . ' ' . $sur;
-        $email = 'email: ' . filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
+        $cust_email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
+        $email = 'email: ' . $cust_email;
         $phone = 'телефон: ' . filter_input(INPUT_POST,'phone',FILTER_SANITIZE_STRING);
         $adr = filter_input(INPUT_POST,'address',FILTER_SANITIZE_STRING);
         $address = $adr ? 'адрес: ' . $adr : '';
@@ -188,21 +189,45 @@ class MainController extends AppController {
         $order = compact('item','quantity','amount','cust','details');
         $ordnum = $model->storeOrder($order); // Уникальный номер заказа
         // Отслать мыло
-        $this->sendMailSeller($item, $ordnum);
-        $this->sendMailCustomer($item, $ordnum, $email);
+        $item_desc = $model->getOneDoll($item);
+        $this->sendMailSeller($item_desc, $ordnum, $cust_email);
+        $this->sendMailCustomer($item_desc, $ordnum, $cust_email,$cust);
         // Обратная информация для страницы заказа и переход на неё
         $_SESSION['order_info'] ='Заказ №'. $ordnum .' для ' . $cust . ' сформирован';
+        //на ту же страницу, откуда пришли
         header("Location: /main/order?id=" .$item);
     }
     
-    public function sendMailSeller($item_id,$order_num) 
+    public function sendMailSeller($item,$order_num, $cust_email) 
     {
+        $msg   = 'Внимание! в ' .date('h:i d.m.Y') .'г. получен заказ №' . 
+                $order_num . ' на изделие ' 
+                . $item['type'] .' от ' .$cust_email;
+        $subject = 'Заказ № ' . $order_num;
+        $reciever = 'hm.doll@yandex.ru';
+        $headers = 'From: <'.$cust_email.'>' . "\r\n";
+        $headers .= "Content-type: text/html; charset=\"utf-8\"";
+        mail($reciever, $subject, $msg, $headers);
         
     }
     
-    public function sendMailCustomer($item_id,$order_num, $cust_email) 
+    public function sendMailCustomer($item,$order_num, $cust_email, $customer) 
     {
-        
+        $msg   = 'Здравствуйте, уважаемый/ая ' .$customer 
+                . ' в ' .date('h:i d.m.Y') .'г. от Вас нами получен заказ №' . 
+                $order_num . ' на изделие ' 
+                . $item['type'] .' стоимостью '. $item['price']
+                .'. При получении оплаты товар будет Вам немедленно отправлен.'
+                . ' С уважением, HMDoll';
+        $subject = 'Заказ № ' . $order_num;
+        $reciever = $cust_email;
+        $headers = 'From: <hm.doll@yandex.ru>' . "\r\n";
+        $headers .= "Content-type: text/html; charset=\"utf-8\"";
+        mail($reciever, $subject, $msg, $headers);
+        $logger = new Logger('postman');
+        $logger->pushHandler(new StreamHandler(WWW.'/applogs/mail.log', Logger::INFO));
+        $infostr = " ## {$subject} , содержание: {$msg}";
+        $logger->info($infostr);
     }
     
     /**

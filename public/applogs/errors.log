@@ -325,3 +325,7 @@
 [2019-01-07 04:40:23] erhan.ERROR: ошибка: Undefined index: id, файл: D:\WebWorksPHP\hmdoll.ru\app\controllers\MainController.php, строка: 176 [] []
 [2019-01-07 04:45:53] erhan.ERROR: ошибка: Undefined index: id, файл: D:\WebWorksPHP\hmdoll.ru\app\controllers\MainController.php, строка: 176 [] []
 [2019-01-07 06:30:56] erhan.ERROR: ошибка: SQLSTATE[HY000]: General error: 1364 Field 'paid' doesn't have a default value, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\libs\rb-mysql.php, строка: 768 [] []
+[2019-01-12 12:26:02] erhan.ERROR: ошибка: Array to string conversion, файл: D:\WebWorksPHP\hmdoll.ru\app\views\Items\edit_item.php, строка: 153 [] []
+[2019-01-12 12:26:10] erhan.ERROR: ошибка: Array to string conversion, файл: D:\WebWorksPHP\hmdoll.ru\app\views\Items\edit_item.php, строка: 153 [] []
+[2019-01-14 13:26:54] erhan.ERROR: ошибка: Страница не найдена, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\core\Router.php, строка: 105 [] []
+[2019-01-14 13:27:30] erhan.ERROR: ошибка: Страница не найдена, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\core\Router.php, строка: 105 [] []
