@@ -329,3 +329,6 @@
 [2019-01-12 12:26:10] erhan.ERROR: ошибка: Array to string conversion, файл: D:\WebWorksPHP\hmdoll.ru\app\views\Items\edit_item.php, строка: 153 [] []
 [2019-01-14 13:26:54] erhan.ERROR: ошибка: Страница не найдена, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\core\Router.php, строка: 105 [] []
 [2019-01-14 13:27:30] erhan.ERROR: ошибка: Страница не найдена, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\core\Router.php, строка: 105 [] []
+[2019-01-19 05:50:33] erhan.ERROR: ошибка: Class 'app\controllers\Slavko' not found, файл: D:\WebWorksPHP\hmdoll.ru\app\controllers\OrdersController.php, строка: 24 [] []
+[2019-01-19 05:51:39] erhan.ERROR: ошибка: Call to undefined method app\controllers\OrdersController::set(), файл: D:\WebWorksPHP\hmdoll.ru\app\controllers\OrdersController.php, строка: 29 [] []
+[2019-01-19 09:46:13] erhan.ERROR: ошибка: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'paid' at row 1, файл: D:\WebWorksPHP\hmdoll.ru\vendor\hmd\libs\rb-mysql.php, строка: 768 [] []

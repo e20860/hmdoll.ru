@@ -271,4 +271,43 @@ class Slavko extends \vendor\hmd\core\base\Model{
         $item = \R::load($name, $itemId);
         \R::trash($item);
     }
-}
+    
+    /**
+     * Возвращает список заказов
+     */
+    public function getOrderList()
+    {
+         $sql = "SELECT `id`,`num`,DATE(time) AS ordate,
+            (SELECT name from items WHERE items.id = orders.item) AS itemname, 
+            (SELECT name from types WHERE types.id =(SELECT type from items WHERE items.id = orders.item)) AS itemtype,
+            quantity,amount,status,paid 
+            FROM `orders`";
+        return \R::getAll($sql);
+       
+    }
+    
+    /**
+     *  Возвращает набор данных одного заказа
+     * @param int $oid id заказа
+     */
+    public function getOrderData($oid)
+    {
+         $sql = "SELECT `id`,`num`,DATE(time) AS ordate, TIME(time) AS ortime,
+            (SELECT name from items WHERE items.id = orders.item) AS itemname, 
+            (SELECT file from sw_images WHERE sw_images.item = orders.item AND num = 1) AS img, 
+            (SELECT name from types WHERE types.id =(SELECT type from items WHERE items.id = orders.item)) AS itemtype,
+            quantity,amount,status,paid,customer,details 
+            FROM `orders` WHERE id = ?";
+        return \R::getAll($sql,[$oid])[0];
+    }
+    
+    public function saveOrderData($dt)
+    {
+        $order = \R::load('orders', $dt['id']);
+        $order->status = $dt['status'];
+        $order->paid = $dt['paid'];
+        $order->customer = $dt['customer'];
+        $order->details = $dt['details'];
+        \R::store($order);
+    }
+} // class
